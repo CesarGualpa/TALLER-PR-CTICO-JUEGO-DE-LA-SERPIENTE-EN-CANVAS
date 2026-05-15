@@ -18,7 +18,10 @@ let intervaloSerpiente;
 // 5. Variable global que guarda la dirección actual
 let direccionActual = "derecha";
 
-// 6. Variable global que guarda la posición de la comida
+// 6 Variable global que guarda el puntaje
+let puntaje = 0;
+
+// 7. Variable global que guarda la posición de la comida
 let comida = {
   x: 12,
   y: 12
@@ -186,6 +189,12 @@ function moverSerpiente() {
     moverAbajo();
   }
 
+  if (atrapaComida() == true) {
+    aumentarPuntaje();
+    crecerSerpiente();
+    generarComida();
+  }
+
   dibujarTodo();
 }
 
@@ -195,4 +204,57 @@ function iniciarJuego() {
 
 function pausarJuego() {
   clearInterval(intervaloSerpiente);
+}
+
+function atrapaComida() {
+  let cabeza = serpiente[0];
+
+  if (cabeza.x == comida.x && cabeza.y == comida.y) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function aumentarPuntaje() {
+  puntaje = puntaje + 1;
+
+  let etiquetaPuntaje = document.getElementById("puntaje");
+  etiquetaPuntaje.innerText = puntaje;
+}
+
+function crecerSerpiente() {
+  let cola = serpiente[serpiente.length - 1];
+
+  let nuevaParte;
+
+  if (direccionActual == "derecha") {
+    nuevaParte = {
+      x: cola.x - 1,
+      y: cola.y
+    };
+  }
+
+  if (direccionActual == "izquierda") {
+    nuevaParte = {
+      x: cola.x + 1,
+      y: cola.y
+    };
+  }
+
+  if (direccionActual == "arriba") {
+    nuevaParte = {
+      x: cola.x,
+      y: cola.y + 1
+    };
+  }
+
+  if (direccionActual == "abajo") {
+    nuevaParte = {
+      x: cola.x,
+      y: cola.y - 1
+    };
+  }
+
+  serpiente.push(nuevaParte);
 }
