@@ -26,28 +26,7 @@ function limpiarCanvas() {
 function dibujarTodo() {
   limpiarCanvas();
   dibujarTablero();
-
-  // PRUEBA 1
-  pintarParte(5, 5);
-
-  // PRUEBA 2
-  pintarParte(10, 2);
-
-  // PRUEBA 3
-  // Cuadrado pegado al borde inferior del canvas
-  pintarParte(3, 23);
-
-  // PRUEBA 4
-  // Cuadrado pegado al borde derecho del canvas
-  pintarParte(23, 6);
-
-  // PRUEBA 5
-  // Cuadrado pegado al borde izquierdo del canvas
-  pintarParte(0, 8);
-
-  // PRUEBA 6
-  // Cuadrado en una esquina del canvas, pero no en (0, 0)
-  pintarParte(23, 23);
+  pintarSerpiente();
 }
 
 function dibujarTablero() {
@@ -79,4 +58,12 @@ function pintarParte(lineaX, lineaY) {
 
   ctx.strokeStyle = "#f97316";
   ctx.strokeRect(posicionRealX, posicionRealY, TAMANIO_CELDA, TAMANIO_CELDA);
+}
+
+function pintarSerpiente() {
+  for (let i = 0; i < serpiente.length; i++) {
+    let parte = serpiente[i];
+
+    pintarParte(parte.x, parte.y);
+  }
 }
