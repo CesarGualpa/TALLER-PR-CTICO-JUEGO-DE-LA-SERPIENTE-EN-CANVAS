@@ -84,6 +84,14 @@ function moverDerecha() {
   serpiente.unshift(nuevaCabeza);
 
   serpiente.pop();
+}
 
-  dibujarTodo();
+function cambiarDireccion(direccion) {
+  if (direccion == "derecha") {
+    moverDerecha();
+  }
+
+  limpiarCanvas();
+  dibujarTablero();
+  pintarSerpiente();
 }
