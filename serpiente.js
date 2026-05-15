@@ -7,9 +7,10 @@ const TAMANIO_CELDA = 25;
 
 // 3. Arreglo que guarda las partes del cuerpo de la serpiente
 const serpiente = [
-  { x: 5, y: 4 },
-  { x: 10, y: 10 },
-  { x: 8, y: 0 }
+  { x: 8, y: 8 },
+  { x: 9, y: 8 },
+  { x: 10, y: 8 },
+  { x: 10, y: 9 }
 ];
 
 // Primera pintura del juego al cargar la página
@@ -30,7 +31,7 @@ function dibujarTodo() {
 }
 
 function dibujarTablero() {
-  ctx.strokeStyle = "#22d3ee";
+  ctx.strokeStyle = "#1e293b";
 
   // Líneas verticales
   for (let x = 0; x <= canvas.width; x += TAMANIO_CELDA) {
@@ -49,14 +50,14 @@ function dibujarTablero() {
   }
 }
 
-function pintarParte(lineaX, lineaY) {
+function pintarParte(lineaX, lineaY, color) {
   let posicionRealX = lineaX * TAMANIO_CELDA;
   let posicionRealY = lineaY * TAMANIO_CELDA;
 
-  ctx.fillStyle = "#facc15";
+  ctx.fillStyle = color;
   ctx.fillRect(posicionRealX, posicionRealY, TAMANIO_CELDA, TAMANIO_CELDA);
 
-  ctx.strokeStyle = "#f97316";
+  ctx.strokeStyle = "#ffffff";
   ctx.strokeRect(posicionRealX, posicionRealY, TAMANIO_CELDA, TAMANIO_CELDA);
 }
 
@@ -64,6 +65,10 @@ function pintarSerpiente() {
   for (let i = 0; i < serpiente.length; i++) {
     let parte = serpiente[i];
 
-    pintarParte(parte.x, parte.y);
+    if (i == serpiente.length - 1) {
+      pintarParte(parte.x, parte.y, "#ffff00");
+    } else {
+      pintarParte(parte.x, parte.y, "#ff1f1f");
+    }
   }
 }
