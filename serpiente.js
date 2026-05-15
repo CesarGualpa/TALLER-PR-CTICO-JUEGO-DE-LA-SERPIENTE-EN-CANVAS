@@ -20,8 +20,27 @@ function dibujarTodo() {
   limpiarCanvas();
   dibujarTablero();
 
-  pintarParte(5, 1);
-  // pintarParte(0, 3);
+  // PRUEBA 1
+  pintarParte(5, 5);
+
+  // PRUEBA 2
+  pintarParte(10, 2);
+
+  // PRUEBA 3
+  // Cuadrado pegado al borde inferior del canvas
+  pintarParte(3, 23);
+
+  // PRUEBA 4
+  // Cuadrado pegado al borde derecho del canvas
+  pintarParte(23, 6);
+
+  // PRUEBA 5
+  // Cuadrado pegado al borde izquierdo del canvas
+  pintarParte(0, 8);
+
+  // PRUEBA 6
+  // Cuadrado en una esquina del canvas, pero no en (0, 0)
+  pintarParte(23, 23);
 }
 
 function dibujarTablero() {
