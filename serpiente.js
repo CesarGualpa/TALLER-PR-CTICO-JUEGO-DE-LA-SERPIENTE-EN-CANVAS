@@ -18,6 +18,15 @@ let intervaloSerpiente;
 // 5. Variable global que guarda la dirección actual
 let direccionActual = "derecha";
 
+// 6. Variable global que guarda la posición de la comida
+let comida = {
+  x: 12,
+  y: 12
+};
+
+// Generamos una comida aleatoria al cargar la página
+generarComida();
+
 // Primera pintura del juego al cargar la página
 dibujarTodo();
 
@@ -32,6 +41,7 @@ function limpiarCanvas() {
 function dibujarTodo() {
   limpiarCanvas();
   dibujarTablero();
+  pintarComida();
   pintarSerpiente();
 }
 
@@ -76,6 +86,27 @@ function pintarSerpiente() {
       pintarParte(parte.x, parte.y, "#ff1f1f");
     }
   }
+}
+
+function pintarComida() {
+  pintarParte(comida.x, comida.y, "#22c55e");
+}
+
+// =========================
+// FUNCIONES DE COMIDA
+// =========================
+
+function generarComida() {
+  let cantidadColumnas = canvas.width / TAMANIO_CELDA;
+  let cantidadFilas = canvas.height / TAMANIO_CELDA;
+
+  let posicionX = Math.floor(Math.random() * cantidadColumnas);
+  let posicionY = Math.floor(Math.random() * cantidadFilas);
+
+  comida = {
+    x: posicionX,
+    y: posicionY
+  };
 }
 
 // =========================
@@ -155,9 +186,7 @@ function moverSerpiente() {
     moverAbajo();
   }
 
-  limpiarCanvas();
-  dibujarTablero();
-  pintarSerpiente();
+  dibujarTodo();
 }
 
 function iniciarJuego() {
