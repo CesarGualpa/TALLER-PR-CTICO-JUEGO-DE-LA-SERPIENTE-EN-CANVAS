@@ -204,7 +204,15 @@ function moverSerpiente() {
 }
 
 function iniciarJuego() {
+  clearInterval(intervaloSerpiente);
+
   intervaloSerpiente = setInterval(moverSerpiente, 1000);
+
+  let etiquetaEstado = document.getElementById("estado");
+  etiquetaEstado.innerText = "Jugando";
+
+  let mensaje = document.getElementById("mensaje");
+  mensaje.innerText = "Juego iniciado.";
 }
 
 function pausarJuego() {
@@ -297,4 +305,31 @@ function finalizarJuego() {
 
   let mensaje = document.getElementById("mensaje");
   mensaje.innerText = "GAME OVER: La serpiente tocó el borde del tablero.";
+}
+
+function reiniciarJuego() {
+  clearInterval(intervaloSerpiente);
+
+  serpiente.length = 0;
+
+  serpiente.push({ x: 8, y: 8 });
+  serpiente.push({ x: 7, y: 8 });
+  serpiente.push({ x: 6, y: 8 });
+
+  direccionActual = "derecha";
+
+  puntaje = 0;
+
+  let etiquetaPuntaje = document.getElementById("puntaje");
+  etiquetaPuntaje.innerText = puntaje;
+
+  let etiquetaEstado = document.getElementById("estado");
+  etiquetaEstado.innerText = "Listo";
+
+  let mensaje = document.getElementById("mensaje");
+  mensaje.innerText = "Presiona iniciar para comenzar.";
+
+  generarComida();
+
+  dibujarTodo();
 }
