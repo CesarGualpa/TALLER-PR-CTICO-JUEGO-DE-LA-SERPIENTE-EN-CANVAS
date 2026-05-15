@@ -5,6 +5,13 @@ const ctx = canvas.getContext("2d");
 // 2. Constante que guarda el tamaño de cada celda del tablero
 const TAMANIO_CELDA = 25;
 
+// 3. Arreglo que guarda las partes del cuerpo de la serpiente
+const serpiente = [
+  { x: 5, y: 4 },
+  { x: 10, y: 10 },
+  { x: 8, y: 0 }
+];
+
 // Primera pintura del juego al cargar la página
 dibujarTodo();
 
