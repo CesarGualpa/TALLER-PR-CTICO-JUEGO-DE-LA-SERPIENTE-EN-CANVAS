@@ -12,6 +12,9 @@ const serpiente = [
   { x: 6, y: 8 }
 ];
 
+let direccionActual = "derecha";
+let intervaloJuego = null;
+
 // Primera pintura del juego al cargar la página
 dibujarTodo();
 
@@ -32,7 +35,6 @@ function dibujarTodo() {
 function dibujarTablero() {
   ctx.strokeStyle = "#1e293b";
 
-  // Líneas verticales
   for (let x = 0; x <= canvas.width; x += TAMANIO_CELDA) {
     ctx.beginPath();
     ctx.moveTo(x, 0);
@@ -40,7 +42,6 @@ function dibujarTablero() {
     ctx.stroke();
   }
 
-  // Líneas horizontales
   for (let y = 0; y <= canvas.height; y += TAMANIO_CELDA) {
     ctx.beginPath();
     ctx.moveTo(0, y);
@@ -124,22 +125,41 @@ function moverAbajo() {
   serpiente.pop();
 }
 
+// =========================
+// FUNCIONES DEL JUEGO
+// =========================
+
 function cambiarDireccion(direccion) {
-  if (direccion == "derecha") {
+  direccionActual = direccion;
+}
+
+function moverSerpiente() {
+  if (direccionActual == "derecha") {
     moverDerecha();
   }
 
-  if (direccion == "izquierda") {
+  if (direccionActual == "izquierda") {
     moverIzquierda();
   }
 
-  if (direccion == "arriba") {
+  if (direccionActual == "arriba") {
     moverArriba();
   }
 
-  if (direccion == "abajo") {
+  if (direccionActual == "abajo") {
     moverAbajo();
   }
 
   dibujarTodo();
+}
+
+function iniciarJuego() {
+  if (intervaloJuego == null) {
+    intervaloJuego = setInterval(moverSerpiente, 300);
+  }
+}
+
+function pausarJuego() {
+  clearInterval(intervaloJuego);
+  intervaloJuego = null;
 }
