@@ -15,13 +15,16 @@ const serpiente = [
 // 4. Variable global para guardar el intervalo
 let intervaloSerpiente;
 
-// 5. Variable global que guarda la dirección actual
+// 5. Variable global para controlar la velocidad del juego
+let velocidad = 200;
+
+// 6. Variable global que guarda la dirección actual
 let direccionActual = "derecha";
 
-// 6 Variable global que guarda el puntaje
+// 7. Variable global que guarda el puntaje
 let puntaje = 0;
 
-// 7. Variable global que guarda la posición de la comida
+// 8. Variable global que guarda la posición de la comida
 let comida = {
   x: 12,
   y: 12
@@ -206,7 +209,7 @@ function moverSerpiente() {
 function iniciarJuego() {
   clearInterval(intervaloSerpiente);
 
-  intervaloSerpiente = setInterval(moverSerpiente, 1000);
+  intervaloSerpiente = setInterval(moverSerpiente, velocidad);
 
   let etiquetaEstado = document.getElementById("estado");
   etiquetaEstado.innerText = "Jugando";
