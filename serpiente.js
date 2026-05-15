@@ -19,7 +19,9 @@ function limpiarCanvas() {
 function dibujarTodo() {
   limpiarCanvas();
   dibujarTablero();
-  dibujarCuadradoPrueba();
+
+  pintarParte(5, 1);
+  // pintarParte(0, 3);
 }
 
 function dibujarTablero() {
@@ -42,10 +44,7 @@ function dibujarTablero() {
   }
 }
 
-function dibujarCuadradoPrueba() {
-  let lineaX = 5;
-  let lineaY = 1;
-
+function pintarParte(lineaX, lineaY) {
   let posicionRealX = lineaX * TAMANIO_CELDA;
   let posicionRealY = lineaY * TAMANIO_CELDA;
 
