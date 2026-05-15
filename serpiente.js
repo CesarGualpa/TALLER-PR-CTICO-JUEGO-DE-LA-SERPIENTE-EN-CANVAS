@@ -65,10 +65,23 @@ function pintarSerpiente() {
   for (let i = 0; i < serpiente.length; i++) {
     let parte = serpiente[i];
 
-    if (i == serpiente.length - 1) {
+    if (i == 0) {
       pintarParte(parte.x, parte.y, "#ffff00");
     } else {
       pintarParte(parte.x, parte.y, "#ff1f1f");
     }
   }
+}
+
+function moverDerecha() {
+  let cabezaActual = serpiente[0];
+
+  let nuevaCabeza = {
+    x: cabezaActual.x + 1,
+    y: cabezaActual.y
+  };
+
+  serpiente.unshift(nuevaCabeza);
+
+  dibujarTodo();
 }
