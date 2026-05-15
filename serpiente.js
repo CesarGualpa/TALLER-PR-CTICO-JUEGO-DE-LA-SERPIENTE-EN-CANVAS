@@ -50,4 +50,7 @@ function pintarParte(lineaX, lineaY) {
 
   ctx.fillStyle = "#facc15";
   ctx.fillRect(posicionRealX, posicionRealY, TAMANIO_CELDA, TAMANIO_CELDA);
+
+  ctx.strokeStyle = "#f97316";
+  ctx.strokeRect(posicionRealX, posicionRealY, TAMANIO_CELDA, TAMANIO_CELDA);
 }
