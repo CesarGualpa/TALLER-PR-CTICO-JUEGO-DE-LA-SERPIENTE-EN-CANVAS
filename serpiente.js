@@ -83,5 +83,7 @@ function moverDerecha() {
 
   serpiente.unshift(nuevaCabeza);
 
+  serpiente.pop();
+
   dibujarTodo();
 }
