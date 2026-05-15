@@ -189,6 +189,11 @@ function moverSerpiente() {
     moverAbajo();
   }
 
+  if (tocaBorde() == true) {
+    finalizarJuego();
+    return;
+  }
+
   if (atrapaComida() == true) {
     aumentarPuntaje();
     crecerSerpiente();
@@ -257,4 +262,39 @@ function crecerSerpiente() {
   }
 
   serpiente.push(nuevaParte);
+}
+
+function tocaBorde() {
+  let cabeza = serpiente[0];
+
+  let cantidadColumnas = canvas.width / TAMANIO_CELDA;
+  let cantidadFilas = canvas.height / TAMANIO_CELDA;
+
+  if (cabeza.x < 0) {
+    return true;
+  }
+
+  if (cabeza.x >= cantidadColumnas) {
+    return true;
+  }
+
+  if (cabeza.y < 0) {
+    return true;
+  }
+
+  if (cabeza.y >= cantidadFilas) {
+    return true;
+  }
+
+  return false;
+}
+
+function finalizarJuego() {
+  clearInterval(intervaloSerpiente);
+
+  let etiquetaEstado = document.getElementById("estado");
+  etiquetaEstado.innerText = "GAME OVER";
+
+  let mensaje = document.getElementById("mensaje");
+  mensaje.innerText = "GAME OVER: La serpiente tocó el borde del tablero.";
 }
