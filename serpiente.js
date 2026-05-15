@@ -8,9 +8,8 @@ const TAMANIO_CELDA = 25;
 // 3. Arreglo que guarda las partes del cuerpo de la serpiente
 const serpiente = [
   { x: 8, y: 8 },
-  { x: 9, y: 8 },
-  { x: 10, y: 8 },
-  { x: 10, y: 9 }
+  { x: 7, y: 8 },
+  { x: 6, y: 8 }
 ];
 
 // Primera pintura del juego al cargar la página
@@ -73,6 +72,10 @@ function pintarSerpiente() {
   }
 }
 
+// =========================
+// FUNCIONES DE MOVIMIENTO
+// =========================
+
 function moverDerecha() {
   let cabezaActual = serpiente[0];
 
@@ -82,7 +85,42 @@ function moverDerecha() {
   };
 
   serpiente.unshift(nuevaCabeza);
+  serpiente.pop();
+}
 
+function moverIzquierda() {
+  let cabezaActual = serpiente[0];
+
+  let nuevaCabeza = {
+    x: cabezaActual.x - 1,
+    y: cabezaActual.y
+  };
+
+  serpiente.unshift(nuevaCabeza);
+  serpiente.pop();
+}
+
+function moverArriba() {
+  let cabezaActual = serpiente[0];
+
+  let nuevaCabeza = {
+    x: cabezaActual.x,
+    y: cabezaActual.y - 1
+  };
+
+  serpiente.unshift(nuevaCabeza);
+  serpiente.pop();
+}
+
+function moverAbajo() {
+  let cabezaActual = serpiente[0];
+
+  let nuevaCabeza = {
+    x: cabezaActual.x,
+    y: cabezaActual.y + 1
+  };
+
+  serpiente.unshift(nuevaCabeza);
   serpiente.pop();
 }
 
@@ -91,7 +129,17 @@ function cambiarDireccion(direccion) {
     moverDerecha();
   }
 
-  limpiarCanvas();
-  dibujarTablero();
-  pintarSerpiente();
+  if (direccion == "izquierda") {
+    moverIzquierda();
+  }
+
+  if (direccion == "arriba") {
+    moverArriba();
+  }
+
+  if (direccion == "abajo") {
+    moverAbajo();
+  }
+
+  dibujarTodo();
 }
