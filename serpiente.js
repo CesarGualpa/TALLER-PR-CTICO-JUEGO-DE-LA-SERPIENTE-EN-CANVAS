@@ -19,6 +19,7 @@ function limpiarCanvas() {
 function dibujarTodo() {
   limpiarCanvas();
   dibujarTablero();
+  dibujarCuadradoPrueba();
 }
 
 function dibujarTablero() {
@@ -39,4 +40,15 @@ function dibujarTablero() {
     ctx.lineTo(canvas.width, y);
     ctx.stroke();
   }
+}
+
+function dibujarCuadradoPrueba() {
+  let lineaX = 5;
+  let lineaY = 1;
+
+  let posicionRealX = lineaX * TAMANIO_CELDA;
+  let posicionRealY = lineaY * TAMANIO_CELDA;
+
+  ctx.fillStyle = "#facc15";
+  ctx.fillRect(posicionRealX, posicionRealY, TAMANIO_CELDA, TAMANIO_CELDA);
 }
