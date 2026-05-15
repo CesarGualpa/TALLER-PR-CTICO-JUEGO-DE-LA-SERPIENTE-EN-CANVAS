@@ -175,3 +175,18 @@ function moverSerpiente() {
 function iniciarJuego() {
   setInterval(moverSerpiente, 1000);
 }
+
+// Variable global para guardar el intervalo
+let intervaloSerpiente;
+
+function moverSerpiente() {
+  console.log("moviendo");
+}
+
+function iniciarJuego() {
+  intervaloSerpiente = setInterval(moverSerpiente, 1000);
+}
+
+function pausarJuego() {
+  clearInterval(intervaloSerpiente);
+}
