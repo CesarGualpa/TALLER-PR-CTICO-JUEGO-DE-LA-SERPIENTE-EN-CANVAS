@@ -12,8 +12,11 @@ const serpiente = [
   { x: 6, y: 8 }
 ];
 
+// 4. Variable global para guardar el intervalo
+let intervaloSerpiente;
+
+// 5. Variable global que guarda la dirección actual
 let direccionActual = "derecha";
-let intervaloJuego = null;
 
 // Primera pintura del juego al cargar la página
 dibujarTodo();
@@ -35,6 +38,7 @@ function dibujarTodo() {
 function dibujarTablero() {
   ctx.strokeStyle = "#1e293b";
 
+  // Líneas verticales
   for (let x = 0; x <= canvas.width; x += TAMANIO_CELDA) {
     ctx.beginPath();
     ctx.moveTo(x, 0);
@@ -42,6 +46,7 @@ function dibujarTablero() {
     ctx.stroke();
   }
 
+  // Líneas horizontales
   for (let y = 0; y <= canvas.height; y += TAMANIO_CELDA) {
     ctx.beginPath();
     ctx.moveTo(0, y);
@@ -150,37 +155,9 @@ function moverSerpiente() {
     moverAbajo();
   }
 
-  dibujarTodo();
-}
-
-function iniciarJuego() {
-  if (intervaloJuego == null) {
-    intervaloJuego = setInterval(moverSerpiente, 300);
-  }
-}
-
-function pausarJuego() {
-  clearInterval(intervaloJuego);
-  intervaloJuego = null;
-}
-
-// =========================
-// FUNCIONES DEL JUEGO
-// =========================
-
-function moverSerpiente() {
-  console.log("moviendo");
-}
-
-function iniciarJuego() {
-  setInterval(moverSerpiente, 1000);
-}
-
-// Variable global para guardar el intervalo
-let intervaloSerpiente;
-
-function moverSerpiente() {
-  console.log("moviendo");
+  limpiarCanvas();
+  dibujarTablero();
+  pintarSerpiente();
 }
 
 function iniciarJuego() {
