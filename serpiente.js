@@ -163,3 +163,15 @@ function pausarJuego() {
   clearInterval(intervaloJuego);
   intervaloJuego = null;
 }
+
+// =========================
+// FUNCIONES DEL JUEGO
+// =========================
+
+function moverSerpiente() {
+  console.log("moviendo");
+}
+
+function iniciarJuego() {
+  setInterval(moverSerpiente, 1000);
+}
