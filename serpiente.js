@@ -115,6 +115,16 @@ function generarComida() {
   };
 }
 
+function atrapaComida() {
+  let cabeza = serpiente[0];
+
+  if (cabeza.x == comida.x && cabeza.y == comida.y) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 // =========================
 // FUNCIONES DE MOVIMIENTO
 // =========================
@@ -167,11 +177,23 @@ function moverAbajo() {
   serpiente.pop();
 }
 
-// =========================
-// FUNCIONES DEL JUEGO
-// =========================
-
 function cambiarDireccion(direccion) {
+  if (direccionActual == "derecha" && direccion == "izquierda") {
+    return;
+  }
+
+  if (direccionActual == "izquierda" && direccion == "derecha") {
+    return;
+  }
+
+  if (direccionActual == "arriba" && direccion == "abajo") {
+    return;
+  }
+
+  if (direccionActual == "abajo" && direccion == "arriba") {
+    return;
+  }
+
   direccionActual = direccion;
 }
 
@@ -206,31 +228,9 @@ function moverSerpiente() {
   dibujarTodo();
 }
 
-function iniciarJuego() {
-  clearInterval(intervaloSerpiente);
-
-  intervaloSerpiente = setInterval(moverSerpiente, velocidad);
-
-  let etiquetaEstado = document.getElementById("estado");
-  etiquetaEstado.innerText = "Jugando";
-
-  let mensaje = document.getElementById("mensaje");
-  mensaje.innerText = "Juego iniciado.";
-}
-
-function pausarJuego() {
-  clearInterval(intervaloSerpiente);
-}
-
-function atrapaComida() {
-  let cabeza = serpiente[0];
-
-  if (cabeza.x == comida.x && cabeza.y == comida.y) {
-    return true;
-  } else {
-    return false;
-  }
-}
+// =========================
+// FUNCIONES DE PUNTAJE Y CRECIMIENTO
+// =========================
 
 function aumentarPuntaje() {
   puntaje = puntaje + 1;
@@ -275,6 +275,10 @@ function crecerSerpiente() {
   serpiente.push(nuevaParte);
 }
 
+// =========================
+// FUNCIONES DE BORDES Y GAME OVER
+// =========================
+
 function tocaBorde() {
   let cabeza = serpiente[0];
 
@@ -308,6 +312,32 @@ function finalizarJuego() {
 
   let mensaje = document.getElementById("mensaje");
   mensaje.innerText = "GAME OVER: La serpiente tocó el borde del tablero.";
+}
+
+// =========================
+// FUNCIONES DE CONTROL DEL JUEGO
+// =========================
+
+function iniciarJuego() {
+  clearInterval(intervaloSerpiente);
+
+  intervaloSerpiente = setInterval(moverSerpiente, velocidad);
+
+  let etiquetaEstado = document.getElementById("estado");
+  etiquetaEstado.innerText = "Jugando";
+
+  let mensaje = document.getElementById("mensaje");
+  mensaje.innerText = "Juego iniciado.";
+}
+
+function pausarJuego() {
+  clearInterval(intervaloSerpiente);
+
+  let etiquetaEstado = document.getElementById("estado");
+  etiquetaEstado.innerText = "Pausado";
+
+  let mensaje = document.getElementById("mensaje");
+  mensaje.innerText = "Juego pausado.";
 }
 
 function reiniciarJuego() {
