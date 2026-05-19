@@ -16,7 +16,7 @@ const serpiente = [
 let intervaloSerpiente;
 
 // 5. Variable global para controlar la velocidad del juego
-let velocidad = 200;
+let velocidad = 400;
 
 // 6. Variable global que guarda la dirección actual
 let direccionActual = "derecha";
